@@ -26,5 +26,5 @@ repo_soup = new_soup(repo_url)
 default_url = new_url(username, "default")
 default_soup = new_soup(default_url)
 
-backend_lang = ["C#", "C++", "C", "Go", "Java", "PHP", "Python", "Ruby", "Rust", "Perl"]
+backend_lang = ["C#", "C++", "C", "Go", "Java", "PHP", "Python", "Ruby", "Rust", "Perl", "Jupyter Notebook"]
 frontend_lang = ["CSS", "HTML", "JavaScript", "TypeScript", "Kotlin", "Swift"]

@@ -57,7 +57,7 @@ def analyze_years_active() -> str:
     years_active = get_years_active()
     if years_active <= 1:
         return "Newbie"
-    elif years_active <= 3:
+    elif years_active <= 5:
         return "Junior"
     else:
         return "Senior"
