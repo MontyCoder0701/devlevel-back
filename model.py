@@ -7,7 +7,6 @@ class Developer:
     self.activity = activity
     self.years = years
 
-username = input("Enter your GitHub username: ")
 
 def new_url(username: str, mode:str) -> str:
     if mode == "repos":
@@ -20,11 +19,6 @@ def new_soup(url: str) -> BeautifulSoup:
     soup = BeautifulSoup(response.content, "html.parser")
     return soup
 
-repo_url = new_url(username, "repos")
-repo_soup = new_soup(repo_url)
-
-default_url = new_url(username, "default")
-default_soup = new_soup(default_url)
 
 backend_lang = ["C#", "C++", "C", "Go", "Java", "PHP", "Python", "Ruby", "Rust", "Perl", "Jupyter Notebook"]
 frontend_lang = ["CSS", "HTML", "JavaScript", "TypeScript", "Kotlin", "Swift"]
