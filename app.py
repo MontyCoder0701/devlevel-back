@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
 from model import new_soup, new_url
 from views import *
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/', methods=['GET'])
 def index():
