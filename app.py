@@ -12,8 +12,15 @@ def index():
 
 @app.route('/api', methods=['POST'])
 def api():
-    data = request.get_json()
-    username = data['username']
+    try:
+        data = request.get_json()
+        username = data['username']
+
+        if username == "" or username == None:
+            return jsonify({'error': 'username is empty'}), 400
+
+    except KeyError as e:
+        return jsonify({'error': f'{e} is missing'}), 400
 
     repo_url = new_url(username, "repos")
     repo_soup = new_soup(repo_url)
@@ -22,7 +29,12 @@ def api():
     default_soup = new_soup(default_url)
 
     languages = get_top_languages(repo_soup)
-    contributions = get_contributions_count(default_soup)
+
+    try:
+        contributions = get_contributions_count(default_soup)
+    except AttributeError:
+        return jsonify({'error': 'user does not exist'}), 400
+    
     years_active = get_years_active(default_soup, username)
 
     response = {

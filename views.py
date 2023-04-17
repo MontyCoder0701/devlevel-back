@@ -1,3 +1,4 @@
+from flask import jsonify
 from model import *
 
 def get_top_languages(repo_soup: str) -> list:
