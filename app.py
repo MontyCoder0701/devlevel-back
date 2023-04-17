@@ -17,10 +17,10 @@ def api():
         username = data['username']
 
         if username == "" or username == None:
-            return jsonify({'error': 'username is empty'}), 400
+            return jsonify({'error': 'username is empty'})
 
     except KeyError as e:
-        return jsonify({'error': f'{e} is missing'}), 400
+        return jsonify({'error': f'{e} is missing'})
 
     repo_url = new_url(username, "repos")
     repo_soup = new_soup(repo_url)
