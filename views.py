@@ -35,28 +35,28 @@ def analyze_languages(languages:list) -> str:
                 frontend_count += 1
 
         if abs(backend_count - frontend_count)/ len(languages) <= 0.2:
-            return "Fullstack"
+            return "Fullstack 🎩"
         else:
             if backend_count > frontend_count:
-                return "Backend"
+                return "Backend 🛠️"
             if frontend_count > backend_count:
-                return "Frontend"
+                return "Frontend 🖥️"
             
 
 def analyze_contributions(contributions: int) -> str:
     if contributions <= 100:
-        return "Low activity"
+        return "Low activity 💤"
     elif contributions <= 300:
-        return "Medium activity"
+        return "Medium activity 🏃🏻"
     else:
-        return "High activity"
+        return "High activity 🤸🏼‍♀️"
  
 
 def analyze_years_active(years_active: int) -> str:
     if years_active <= 1:
-        return "Newbie"
+        return "Newbie 🐥"
     elif years_active <= 5:
-        return "Junior"
+        return "Junior 🌱"
     else:
-        return "Senior"
+        return "Senior 👨‍🎓"
 
