@@ -34,7 +34,7 @@ def analyze_languages(languages:list) -> str:
             if language in frontend_lang:
                 frontend_count += 1
 
-        if abs(backend_count - frontend_count) < 3:
+        if abs(backend_count - frontend_count)/ len(languages) <= 0.2:
             return "Fullstack"
         else:
             if backend_count > frontend_count:
