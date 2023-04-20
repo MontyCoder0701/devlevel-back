@@ -1,5 +1,6 @@
 from flask import jsonify
 from model import *
+from collections import Counter
 
 def get_top_languages(repo_soup: str) -> list:
     elements = repo_soup.select("span[itemprop='programmingLanguage']")
@@ -33,30 +34,38 @@ def analyze_languages(languages:list) -> str:
                 backend_count += 1
             if language in frontend_lang:
                 frontend_count += 1
+    
+        if len(languages) >=  3:
+            top_languages = Counter(languages).most_common(3)
+        else:
+            top_languages = Counter(languages).most_common(len(languages))
+        top_languages = [language[0] for language in top_languages]
 
         if abs(backend_count - frontend_count)/ len(languages) <= 0.2:
-            return "Fullstack 🎩"
+            return "🎩 Fullstack with " + ", ".join(top_languages)
         else:
             if backend_count > frontend_count:
-                return "Backend 🛠️"
+                return "🛠️ Backend with " + ", ".join(top_languages)
             if frontend_count > backend_count:
-                return "Frontend 🖥️"
+                return "🖥️ Frontend  with " + ", ".join(top_languages)
             
 
 def analyze_contributions(contributions: int) -> str:
-    if contributions <= 100:
-        return "Low activity 💤"
+    if contributions <= 50:
+        return "👻 Ghost user"
+    elif contributions <= 100:
+        return "💤 Low activity"
     elif contributions <= 300:
-        return "Medium activity 🏃🏻"
+        return "🏃🏻 Medium activity"
     else:
-        return "High activity 🤸🏼‍♀️"
+        return "🤸🏼‍♀️ High activity"
  
 
 def analyze_years_active(years_active: int) -> str:
     if years_active <= 1:
-        return "Newbie 🐥"
+        return f"🐥 Newbie for {years_active} year"
     elif years_active <= 5:
-        return "Junior 🌱"
+        return f"🌱 Junior for {years_active} years"
     else:
-        return "Senior 👨‍🎓"
+        return f"👨‍🎓 Senior for {years_active} years"
 
