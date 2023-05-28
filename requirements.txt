@@ -1,4 +1,4 @@
-requests
+requests < 2.30 # prevent conflict with urlib3
 beautifulsoup4
 flask
 gunicorn

@@ -8,13 +8,13 @@ class Developer:
     self.years = years
 
 
-def new_url(username: str, mode:str) -> str:
+def new_url(username, mode):
     if mode == "repos":
         return f"https://github.com/{username}?tab=repositories"
     if mode == "default":
         return f"https://github.com/{username}"
 
-def new_soup(url: str) -> BeautifulSoup:
+def new_soup(url) -> BeautifulSoup:
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
     return soup

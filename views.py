@@ -2,19 +2,19 @@ from flask import jsonify
 from model import *
 from collections import Counter
 
-def get_top_languages(repo_soup: str) -> list:
+def get_top_languages(repo_soup):
     elements = repo_soup.select("span[itemprop='programmingLanguage']")
     texts = [element.text for element in elements]
     return texts
 
 
-def get_contributions_count(default_soup: str) -> int:
+def get_contributions_count(default_soup):
     contributions_h2 = default_soup.find("h2", class_="f4 text-normal mb-2")
     contributions_count = contributions_h2.get_text(strip=True).split()[0].replace(",", "")
     return int(contributions_count)
 
 
-def get_years_active(default_soup:str, username:str) -> int:
+def get_years_active(default_soup, username):
     buttons = default_soup.find_all("a", class_="js-year-link")
     count = 0
     for button in buttons:
@@ -23,7 +23,7 @@ def get_years_active(default_soup:str, username:str) -> int:
     return count
 
 
-def analyze_languages(languages:list) -> str:
+def analyze_languages(languages):
     if len(languages) == 0:
         return "Not enough languages to analyze"
     else:
@@ -50,7 +50,7 @@ def analyze_languages(languages:list) -> str:
                 return "🖥️ Frontend  with " + ", ".join(top_languages)
             
 
-def analyze_contributions(contributions: int) -> str:
+def analyze_contributions(contributions):
     if contributions <= 50:
         return "👻 Ghost user"
     elif contributions <= 100:
@@ -61,7 +61,7 @@ def analyze_contributions(contributions: int) -> str:
         return "🤸🏼‍♀️ High activity"
  
 
-def analyze_years_active(years_active: int) -> str:
+def analyze_years_active(years_active):
     if years_active <= 1:
         return f"🐥 Newbie for {years_active} year"
     elif years_active <= 5:
