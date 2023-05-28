@@ -23,49 +23,64 @@ def get_years_active(default_soup, username):
     return count
 
 
+def analyze_stack(languages):
+    if len(languages) == 0:
+        return "Not enough languages to analyze"
+    
+    backend_count, frontend_count, top_languages = count_languages(languages)
+    
+    if abs(backend_count - frontend_count)/ len(languages) <= 0.2:
+        return "Fullstack"
+    elif backend_count > frontend_count:
+        return "Backend" 
+    else:
+        return "Frontend"
+
+
 def analyze_languages(languages):
     if len(languages) == 0:
         return "Not enough languages to analyze"
-    else:
-        backend_count = 0
-        frontend_count = 0
-        for language in languages:
-            if language in backend_lang:
-                backend_count += 1
-            if language in frontend_lang:
-                frontend_count += 1
     
-        if len(languages) >=  3:
-            top_languages = Counter(languages).most_common(3)
-        else:
-            top_languages = Counter(languages).most_common(len(languages))
-        top_languages = [language[0] for language in top_languages]
+    _, _, top_languages = count_languages(languages)
+    
+    return top_languages
 
-        if abs(backend_count - frontend_count)/ len(languages) <= 0.2:
-            return "🎩 Fullstack with " + ", ".join(top_languages)
-        else:
-            if backend_count > frontend_count:
-                return "🛠️ Backend with " + ", ".join(top_languages)
-            if frontend_count > backend_count:
-                return "🖥️ Frontend  with " + ", ".join(top_languages)
-            
+
+def count_languages(languages):
+    backend_count = 0
+    frontend_count = 0
+    for language in languages:
+        if language in backend_lang:
+            backend_count += 1
+        if language in frontend_lang:
+            frontend_count += 1
+
+    if len(languages) >=  3:
+        top_languages = Counter(languages).most_common(3)
+    else:
+        top_languages = Counter(languages).most_common(len(languages))
+    top_languages = [language[0] for language in top_languages]
+    
+    return backend_count, frontend_count, top_languages
 
 def analyze_contributions(contributions):
     if contributions <= 50:
-        return "👻 Ghost user"
+        return "Ghost"
     elif contributions <= 100:
-        return "💤 Low activity"
+        return "Low"
     elif contributions <= 300:
-        return "🏃🏻 Medium activity"
+        return "Medium"
     else:
-        return "🤸🏼‍♀️ High activity"
+        return "High"
  
 
-def analyze_years_active(years_active):
+def analyze_expertise(years_active):
     if years_active <= 1:
-        return f"🐥 Newbie for {years_active} year"
+        return "Newbie"
     elif years_active <= 5:
-        return f"🌱 Junior for {years_active} years"
+        return "Junior"
     else:
-        return f"👨‍🎓 Senior for {years_active} years"
+        return "Senior"
 
+def analyze_years_active(years_active):
+    return years_active 

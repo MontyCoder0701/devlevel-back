@@ -38,8 +38,10 @@ def api():
     years_active = get_years_active(default_soup, username)
 
     response = {
+        'stack': analyze_stack(languages),
         'languages': analyze_languages(languages),
         'contributions': analyze_contributions(contributions),
+        'expertise' : analyze_expertise(years_active),
         'years_active': analyze_years_active(years_active)
     }
 
