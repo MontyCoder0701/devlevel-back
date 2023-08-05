@@ -21,7 +21,7 @@ def get_years_active(default_soup):
 
 def analyze_stack(languages):
     if len(languages) == 0:
-        return "Not enough languages to analyze"
+        return None
     
     backend_count, frontend_count, top_languages = count_languages(languages)
     
@@ -35,8 +35,8 @@ def analyze_stack(languages):
 
 def analyze_languages(languages):
     if len(languages) == 0:
-        return "Not enough languages to analyze"
-    
+        return None
+
     _, _, top_languages = count_languages(languages)
     
     return top_languages
