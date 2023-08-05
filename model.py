@@ -2,10 +2,10 @@ import requests
 from bs4 import BeautifulSoup
 
 class Developer:
-  def __init__(self, lang, activity, years):
-    self.lang = lang
-    self.activity = activity
-    self.years = years
+    def __init__(self, lang, activity, years):
+        self.lang = lang
+        self.activity = activity
+        self.years = years
 
 
 def new_url(username, mode):

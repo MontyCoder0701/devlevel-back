@@ -14,13 +14,9 @@ def get_contributions_count(default_soup):
     return int(contributions_count)
 
 
-def get_years_active(default_soup, username):
+def get_years_active(default_soup):
     buttons = default_soup.find_all("a", class_="js-year-link")
-    count = 0
-    for button in buttons:
-        if f"/{username}?tab=overview" in button["href"]:
-            count += 1
-    return count
+    return len(buttons)
 
 
 def analyze_stack(languages):
@@ -72,7 +68,7 @@ def analyze_contributions(contributions):
         return "Medium"
     else:
         return "High"
- 
+
 
 def analyze_expertise(years_active):
     if years_active <= 1:

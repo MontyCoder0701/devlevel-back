@@ -35,7 +35,7 @@ def api():
     except AttributeError:
         return jsonify({'error': 'user does not exist'}), 400
     
-    years_active = get_years_active(default_soup, username)
+    years_active = get_years_active(default_soup)
 
     response = {
         'stack': analyze_stack(languages),
