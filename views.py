@@ -20,26 +20,26 @@ def get_years_active(default_soup):
 
 
 def analyze_stack(languages):
-    if len(languages) == 0:
+    if not languages:
         return None
-    
-    backend_count, frontend_count, top_languages = count_languages(languages)
-    
-    if abs(backend_count - frontend_count)/ len(languages) <= 0.2:
-        return "Fullstack"
-    elif backend_count > frontend_count:
-        return "Backend" 
     else:
-        return "Frontend"
+        backend_count, frontend_count, _ = count_languages(languages)
+        
+        if abs(backend_count - frontend_count)/ len(languages) <= 0.2:
+            return "Fullstack"
+        elif backend_count > frontend_count:
+            return "Backend" 
+        else:
+            return "Frontend"
 
 
 def analyze_languages(languages):
-    if len(languages) == 0:
+    if not languages:
         return None
-
-    _, _, top_languages = count_languages(languages)
-    
-    return top_languages
+    else:
+        _, _, top_languages = count_languages(languages)
+        
+        return top_languages
 
 
 def count_languages(languages):
@@ -60,23 +60,32 @@ def count_languages(languages):
     return backend_count, frontend_count, top_languages
 
 def analyze_contributions(contributions):
-    if contributions <= 50:
-        return "Ghost"
-    elif contributions <= 100:
-        return "Low"
-    elif contributions <= 300:
-        return "Medium"
+    if not contributions:
+        return None
     else:
-        return "High"
+        if contributions <= 50:
+            return "Ghost"
+        elif contributions <= 100:
+            return "Low"
+        elif contributions <= 300:
+            return "Medium"
+        else:
+            return "High"
 
 
 def analyze_expertise(years_active):
-    if years_active <= 1:
-        return "Newbie"
-    elif years_active <= 5:
-        return "Junior"
+    if not years_active:
+        return None
     else:
-        return "Senior"
+        if years_active <= 1:
+            return "Newbie"
+        elif years_active <= 5:
+            return "Junior"
+        else:
+            return "Senior"
 
 def analyze_years_active(years_active):
-    return years_active 
+    if not years_active:
+        return None
+    else:
+        return years_active 
